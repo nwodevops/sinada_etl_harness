@@ -1,0 +1,9 @@
+
+Oracle DW / BD_CURSOR (DB_ORA_DW_* ; Hop: oracle_dw)
+# También usado como destino de wf_main → tabla DW_INF_CSEP_INFORMES_VIEW
+Host: localhost
+Port: 1524
+Service: BD_CURSOR
+SysPassword: OraclePwd2026
+User: app
+Password: app2026

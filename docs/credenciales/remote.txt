@@ -1,0 +1,9 @@
+
+################## OUTPUT  ##################
+
+Oracle DW REMOTO (DB_ORA_DW_* ; Hop: oracle_dw → tabla DW_INF_CSEP_INFORMES_VIEW)
+Host: 10.6.0.15
+Port: 1532
+Service: dvoefacore
+User: REPOCSEP
+Password: desarrollo24

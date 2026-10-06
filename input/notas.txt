@@ -1,0 +1,36 @@
+-google sheets SINADA
+
+2020) 1-kyDECU1v4_KcazfqEaX7299t8WApKKlbCsEuYeZKXo
+2021)1DKMICtS7Tkjv9dFfuJLxs9eqSYSyMuh1B1-22Thlgt0
+
+#tab: Derivaciones
+
+#estructura tabla 
+
+Derivaciones	Código Sinada
+Derivaciones	Acciones adoptadas
+Derivaciones	HT derivación
+Derivaciones	Efa competente
+Derivaciones	Tipo de destinatario [Casilla automática]
+Derivaciones	Plazo otorgado para la respuesta [Días hábiles]
+Derivaciones	Días transcurridos desde la notificación [Casilla automática]
+Derivaciones	Seguimiento a la respuesta al documento emitido [Casilla automática]
+Derivaciones	N° del documento emitido
+Derivaciones	Fecha de firma del documento
+Derivaciones	Fecha de notificación del documento [Ver cargo]
+Derivaciones	HT de respuesta
+Derivaciones	Fecha de recepción de la primera respuesta
+Derivaciones	HT de respuesta post cierre
+Derivaciones	Fecha de recepción del documento de respuesta después del cierre
+Derivaciones	HT reiterativo
+Derivaciones	N° del documento reiterativo
+Derivaciones	Plazo de respuesta al reiterativo [Días hábiles]
+Derivaciones	Fecha de firma del documento reiterativo
+Derivaciones	Fecha de notificación del reiterativo [Ver cargo]
+Derivaciones	Días transcurridos desde la notificación reiterativo [Casilla automática]
+Derivaciones	Seguimiento a la respuesta al reiterativo [Casilla automática]
+Derivaciones	N° del oficio con el que se envía el informe a OCI
+Derivaciones	Fecha de firma del informe a OCI
+Derivaciones	Fecha de notificación del doc con el que se envía informe a OCI
+Derivaciones	Calificación de la respuesta
+Derivaciones	Supuesto que concluye el seguimiento
