@@ -11,3 +11,9 @@ Al cerrar una feature, append aquí: fecha, id, resumen, evidencia (`progress/im
 ## 2026-10-05 — fase-1-entorno, fase-2-fuentes-stg, fase-3-logica, fase-4-oracle
 
 Sheets Derivaciones 2020 y 2021 homologadas a 26 campos + `ANIO` y cargadas en `RP_SINADA_DENUNCIAS_DERIVACIONES`. Evidencia: `progress/impl_fase-4-oracle.md`.
+
+---
+
+## 2026-10-07 — fase-5-catalogos
+
+Directorio SEFA, REGISTROS, UBIGEO y Feriados en `RP_SINADA_DIRECTORIO_SEFA`, `RP_SINADA_REGISTROS`, `RP_SINADA_UBIGEO` y `RP_SINADA_FERIADOS`. `./init.sh` cerró en `HARNESS OK`. Evidencia: `progress/impl_fase-5-catalogos.md`.

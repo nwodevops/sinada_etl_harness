@@ -1,36 +1,162 @@
 -google sheets SINADA
-
+2019) 1KF03o935qVtfTIG79LoXDw-AQ3GBQap_1cQfIQdw8DM
 2020) 1-kyDECU1v4_KcazfqEaX7299t8WApKKlbCsEuYeZKXo
 2021)1DKMICtS7Tkjv9dFfuJLxs9eqSYSyMuh1B1-22Thlgt0
+MATRIZ GENERAL SINADA) 1Ky_6WQuaWfxoXP1keS-Ho4zxXMht3wIYIjaOW3fBXSc
 
 #tab: Derivaciones
 
-#estructura tabla 
+#estructura tabla  2019
 
-Derivaciones	Código Sinada
-Derivaciones	Acciones adoptadas
-Derivaciones	HT derivación
-Derivaciones	Efa competente
-Derivaciones	Tipo de destinatario [Casilla automática]
-Derivaciones	Plazo otorgado para la respuesta [Días hábiles]
-Derivaciones	Días transcurridos desde la notificación [Casilla automática]
-Derivaciones	Seguimiento a la respuesta al documento emitido [Casilla automática]
-Derivaciones	N° del documento emitido
-Derivaciones	Fecha de firma del documento
-Derivaciones	Fecha de notificación del documento [Ver cargo]
-Derivaciones	HT de respuesta
-Derivaciones	Fecha de recepción de la primera respuesta
-Derivaciones	HT de respuesta post cierre
-Derivaciones	Fecha de recepción del documento de respuesta después del cierre
-Derivaciones	HT reiterativo
-Derivaciones	N° del documento reiterativo
-Derivaciones	Plazo de respuesta al reiterativo [Días hábiles]
-Derivaciones	Fecha de firma del documento reiterativo
-Derivaciones	Fecha de notificación del reiterativo [Ver cargo]
-Derivaciones	Días transcurridos desde la notificación reiterativo [Casilla automática]
-Derivaciones	Seguimiento a la respuesta al reiterativo [Casilla automática]
-Derivaciones	N° del oficio con el que se envía el informe a OCI
-Derivaciones	Fecha de firma del informe a OCI
-Derivaciones	Fecha de notificación del doc con el que se envía informe a OCI
-Derivaciones	Calificación de la respuesta
-Derivaciones	Supuesto que concluye el seguimiento
+Derivaciones	Código Sinada	CODIGO_SINADA
+Derivaciones	Acciones adoptadas	ACCION_ADOPTADA
+Derivaciones	HT derivación	HT
+Derivaciones	Efa competente	EFA
+Derivaciones	Tipo de destinatario [Casilla automática]	TIPO_EFA
+Derivaciones	Plazo otorgado para la respuesta [Días hábiles]	PLAZO
+Derivaciones	Días transcurridos desde la notificación [Casilla automática]	DIAS_TRANSCURRIDOS
+Derivaciones	Seguimiento a la respuesta al documento emitido [Casilla automática]	SEGUIMIENTO_RPTA
+Derivaciones	N° del documento emitido	NRO_DOC
+Derivaciones	Fecha de firma del documento	FECHA_FIRMA
+Derivaciones	Fecha de notificación del documento [Ver cargo]	FECHA_NOTIFICACION
+Derivaciones	HT de respuesta	HT_RESPUESTA
+Derivaciones	Fecha de recepción de la primera respuesta	FECHA_RESPUESTA
+Derivaciones	HT de respuesta post cierre	HT_RESPUESTA_POSTCIERRE
+Derivaciones	Fecha de recepción del documento de respuesta después del cierre	FECHA_RESPUESTA_POSTCIERRE
+Derivaciones	HT reiterativo	HT_REITERATIVO
+Derivaciones	N° del documento reiterativo	NRO_REITERATIVO
+Derivaciones	Plazo de respuesta al reiterativo [Días hábiles]	PLAZO_REITERATIVO
+Derivaciones	Fecha de firma del documento reiterativo	FECHA_FIRMA_REITERATIVO
+Derivaciones	Fecha de notificación del reiterativo [Ver cargo]	FECHA_NOTIFICACION_REITERATIVO
+Derivaciones	Días transcurridos desde la notificación reiterativo [Casilla automática]	DIAS_TRANSCURRIDOS_REITERATIVO
+Derivaciones	Seguimiento a la respuesta al reiterativo [Casilla automática]	SEGUIMIENTO_RPTA_REITERATIVO
+Derivaciones	N° del oficio con el que se envía el informe a OCI	NRO_OCI
+Derivaciones	Fecha de firma del informe a OCI	FECHA_FIRMA_OCI
+Derivaciones	Fecha de notificación del doc con el que se envía informe a OCI	FECHA_NOTIFICACION_OCI
+Derivaciones	Calificación de la respuesta	CALIFICACION_RPTA
+Derivaciones	Supuesto que concluye el seguimiento	SUPUESTO_CIERRE
+
+
+#estructura tabla 2020
+
+Derivaciones	Código Sinada	CODIGO_SINADA
+Derivaciones	Acciones adoptadas	ACCION_ADOPTADA
+Derivaciones	HT derivación	HT
+Derivaciones	Efa competente	EFA
+Derivaciones	Tipo de destinatario [Casilla automática]	TIPO_EFA
+Derivaciones	Plazo otorgado para la respuesta [Días hábiles]	PLAZO
+Derivaciones	Días transcurridos desde la notificación [Casilla automática]	DIAS_TRANSCURRIDOS
+Derivaciones	Seguimiento a la respuesta al documento emitido [Casilla automática]	SEGUIMIENTO_RPTA
+Derivaciones	N° del documento emitido	NRO_DOC
+Derivaciones	Fecha de firma del documento	FECHA_FIRMA
+Derivaciones	Fecha de notificación del documento[Ver cargo]	FECHA_NOTIFICACION
+Derivaciones	HT de respuesta	HT_RESPUESTA
+Derivaciones	Fecha de recepción de la primera respuesta	FECHA_RESPUESTA
+Derivaciones	HT de respuesta post cierre	HT_RESPUESTA_POSTCIERRE
+Derivaciones	Fecha de recepción del documento de respuesta después del cierre	FECHA_RESPUESTA_POSTCIERRE
+Derivaciones	HT reiterativo	HT_REITERATIVO
+Derivaciones	N° del documento reiterativo	NRO_REITERATIVO
+Derivaciones	Plazo de respuesta al reiterativo [Días hábiles]	PLAZO_REITERATIVO
+Derivaciones	Fecha de firma del documento reiterativo	FECHA_FIRMA_REITERATIVO
+Derivaciones	Fecha de notificación del reiterativo [Ver cargo]	FECHA_NOTIFICACION_REITERATIVO
+Derivaciones	Días transcurridos desde la notificación reiterativo [Casilla automática]	DIAS_TRANSCURRIDOS_REITERATIVO
+Derivaciones	Seguimiento a la respuesta al reiterativo [Casilla automática]	SEGUIMIENTO_RPTA_REITERATIVO
+Derivaciones	N° del oficio con el que se envía el informe a OCI	NRO_OCI
+Derivaciones	Fecha de firma del informe a OCI	FECHA_FIRMA_OCI
+Derivaciones	Fecha de notificación del doc con el que se envía informe a OCI	FECHA_NOTIFICACION_OCI
+Derivaciones	Calificación de la respuesta	CALIFICACION_RPTA
+Derivaciones	Supuesto que concluye el seguimiento	SUPUESTO_CIERRE
+
+#estructura tabla 2021 
+
+Derivaciones	Código Sinada	CODIGO_SINADA
+Derivaciones	Acciones adoptadas	ACCION_ADOPTADA
+Derivaciones	HT derivación	HT
+Derivaciones	Efa competente	EFA
+Derivaciones	Tipo de destinatario [Casilla automática]	TIPO_EFA
+Derivaciones	Plazo otorgado para la respuesta [Días hábiles]	PLAZO
+Derivaciones	Días transcurridos desde la notificación [Casilla automática]	DIAS_TRANSCURRIDOS
+Derivaciones	Seguimiento a la respuesta al documento emitido [Casilla automática]	SEGUIMIENTO_RPTA
+Derivaciones	N° del documento emitido	NRO_DOC
+Derivaciones	Fecha de firma del documento	FECHA_FIRMA
+Derivaciones	Fecha de notificación del documento [Ver cargo]	FECHA_NOTIFICACION
+Derivaciones	HT de respuesta	HT_RESPUESTA
+Derivaciones	Fecha de recepción de la primera respuesta	FECHA_RESPUESTA
+Derivaciones	HT de respuesta post cierre	HT_RESPUESTA_POSTCIERRE
+Derivaciones	Fecha de recepción del documento de respuesta después del cierre	FECHA_RESPUESTA_POSTCIERRE
+Derivaciones	HT reiterativo	HT_REITERATIVO
+Derivaciones	N° del documento reiterativo	NRO_REITERATIVO
+Derivaciones	Plazo de respuesta al reiterativo [Días hábiles]	PLAZO_REITERATIVO
+Derivaciones	Fecha de firma del documento reiterativo	FECHA_FIRMA_REITERATIVO
+Derivaciones	Fecha de notificación del reiterativo [Ver cargo]	FECHA_NOTIFICACION_REITERATIVO
+Derivaciones	Días transcurridos desde la notificación reiterativo [Casilla automática]	DIAS_TRANSCURRIDOS_REITERATIVO
+Derivaciones	Seguimiento a la respuesta al reiterativo [Casilla automática]	SEGUIMIENTO_RPTA_REITERATIVO
+Derivaciones	N° del oficio con el que se envía el informe a OCI	NRO_OCI
+Derivaciones	Fecha de firma del informe a OCI	FECHA_FIRMA_OCI
+Derivaciones	Fecha de notificación del doc con el que se envía informe a OCI	FECHA_NOTIFICACION_OCI
+Derivaciones	Calificación de la respuesta	CALIFICACION_RPTA
+Derivaciones	Supuesto que concluye el seguimiento	SUPUESTO_CIERRE
+
+#estructura tabla general sinada 
+
+
+Derivaciones	CODIGO SINADA	CODIGO_SINADA
+Derivaciones	ACCIONES ADOPTADAS	ACCION_ADOPTADA
+Derivaciones	HT DERIVACION	HT
+Derivaciones	EFA COMPETENTE	EFA
+Derivaciones	TIPO DESTINATARIO	TIPO_EFA
+Derivaciones	PLAZO OTORGADO EN DIAS HABILES	PLAZO
+Derivaciones	DIAS HABILES TRANSCURRIDOS DESDE NOTIFICACION	DIAS_TRANSCURRIDOS
+Derivaciones	SEGUIMIENTO A LA RESPUESTA DEL DOC EMITIDO	SEGUIMIENTO_RPTA
+Derivaciones	NRO DOCUMENTO EMITIDO	NRO_DOC
+Derivaciones	FECHA FIRMA DOCUMENTO	FECHA_FIRMA
+Derivaciones	FECHA DE NOTIFICACION	FECHA_NOTIFICACION
+Derivaciones	HT DE RESPUESTA	HT_RESPUESTA
+Derivaciones	FECHA DE RECEPCION DE LA PRIMERA RESPUESTA	FECHA_RESPUESTA
+Derivaciones	HT DE RESPUESTA POST CIERRE	HT_RESPUESTA_POSTCIERRE
+Derivaciones	FECHA DE RECEPCION DEL DOCUMENTO DE RESPUESTA DESPUES DEL CIERRE	FECHA_RESPUESTA_POSTCIERRE
+Derivaciones	FECHA ENVIO PROYECTO REITERATIVO	FECHA_ENVIO_PROYEC_REITERATIVO
+Derivaciones	DIAS HABILES TRANSCURRIDOS DESDE VENCIMIENTO DE DERIVACIÓN/SOLICITUD FINAL HASTA  OCI	DIAS_VENCIMIENTO_PARAOCI
+Derivaciones	TAREA A REALIZAR RESPECTO VENCIMIENTO DE DERIVACIÓN O SOLICITUD FINAL	TAREA_OCI
+Derivaciones	HT REITERATIVO	HT_REITERATIVO
+Derivaciones	NRO DEL DOCUMENTO REITERATIVO	NRO_REITERATIVO
+Derivaciones	PLAZO DE RPTA AL REITERATIVO	PLAZO_REITERATIVO
+Derivaciones	FECHA DE FIRMA DEL DOCUMENTO REITERATIVO	FECHA_FIRMA_REITERATIVO
+Derivaciones	FECHA DE NOTIFICACION DEL REITERATIVO	FECHA_NOTIFICACION_REITERATIVO
+Derivaciones	DIAS HABILES TRANSCURRIDOS DESDE NOTIFICACION REITERATIVO	DIAS_TRANSCURRIDOS_REITERATIVO
+Derivaciones	SEGUIMIENTO A LA RESPUESTA DEL REITERATIVO	SEGUIMIENTO_RPTA_REITERATIVO
+Derivaciones	NRO DEL OFICIO AL OCI	NRO_OCI
+Derivaciones	FECHA FIRMA DEL OFICIO AL OCI	FECHA_FIRMA_OCI
+Derivaciones	FECHA NOTIFICACION DEL OFICIO AL OCI	FECHA_NOTIFICACION_OCI
+Derivaciones	CALIFICACION DE LA RESPUESTA	CALIFICACION_RPTA
+Derivaciones	SUPUESTO QUE CONCLUYE EL SEGUIMIENTO	SUPUESTO_CIERRE
+
+#new inputs 3 tablas por input 
+
+1) DIRECTORIO_SEFA : 1pjHXiz15Zmw-49Nr4o1YdXJnddUX74n7Tbdf5SH7Lb0 
+
+-estructura 
+
+Directorio	Entidad u oficina - 	EFA
+Tipo de entidad u oficina -	TIPO_EFA
+Tipo de documento que pertenece -	TIPO_DOC
+
+
+2) SINADA_CIFRAS : 1iHQSOl7UVbGSjDsnWLqJFeZw1QP7GnHWEcbYJo9XwPA 
+
+-estructura 
+
+REGISTROS	CODIGO_SINADA	- CODIGO_SINADA
+REGISTROS	FECHA_INGRESO	- FECHA_INGRESO
+REGISTROS	FECHA_REGISTRO -	FECHA_REGISTRO
+UBIGEO	CODIGO_SINADA -	CODIGO_SINADA
+UBIGEO	DEPARTAMENTO -	DEPARTAMENTO
+UBIGEO	PROVINCIA -	PROVINCIA
+UBIGEO	DISTRITO -	DISTRITO
+UBIGEO	NU_COORDENADA_X -	NU_COORDENADA_X
+UBIGEO	NU_COORDENADA_Y -	NU_COORDENADA_Y
+
+3) Feriados : 18r2ss-YOuqVp1XoZwHk19ZUBDFkrEBL_c8PRpLmlzAk
+
+-estructura
+Feriados	DP	FERIADO

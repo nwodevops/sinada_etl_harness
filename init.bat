@@ -49,13 +49,29 @@ set "RC=%ERRORLEVEL%"
 call :append
 if not "%RC%"=="0" goto :fail
 
+findstr /C:"STG_GS3_SINADA_DERIV: " "%LOGFILE%" >nul || goto :fail
 findstr /C:"STG_GS1_SINADA_DERIV: " "%LOGFILE%" >nul || goto :fail
 findstr /C:"STG_GS2_SINADA_DERIV: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS4_SINADA_MATRIZ: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS5_DIRECTORIO: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS6_REGISTROS: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS7_UBIGEO: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS8_FERIADOS: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS3_SINADA_DERIV: 0 filas" "%LOGFILE%" >nul && goto :fail
 findstr /C:"STG_GS1_SINADA_DERIV: 0 filas" "%LOGFILE%" >nul && goto :fail
 findstr /C:"STG_GS2_SINADA_DERIV: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS4_SINADA_MATRIZ: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS5_DIRECTORIO: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS6_REGISTROS: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS7_UBIGEO: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS8_FERIADOS: 0 filas" "%LOGFILE%" >nul && goto :fail
 findstr /C:"Salida RESULTADO" "%LOGFILE%" >nul || goto :fail
 findstr /C:"Excel:" "%LOGFILE%" >nul || goto :fail
 findstr /C:"Oracle RP_SINADA_DENUNCIAS_DERIVACIONES: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_DIRECTORIO_SEFA: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_REGISTROS: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_UBIGEO: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_FERIADOS: " "%LOGFILE%" >nul || goto :fail
 findstr /C:"${" "%LOGFILE%" >nul && goto :fail
 
 echo HARNESS OK — ver CHECKPOINTS.md

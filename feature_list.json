@@ -33,6 +33,13 @@
       "status": "done",
       "criterio": "CHECKPOINTS.md#fase-4",
       "doc": "python/io/cargar_dw.py"
+    },
+    {
+      "id": "fase-5-catalogos",
+      "title": "Directorio SEFA, REGISTROS, UBIGEO y Feriados",
+      "status": "done",
+      "criterio": "Cuatro tablas RP_SINADA_* con COUNT(*) en el log de init",
+      "doc": "input/notas.txt"
     }
   ]
 }

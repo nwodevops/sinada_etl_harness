@@ -63,14 +63,24 @@ step "Python main (logica + Oracle + Excel)"
 run_step "$PY" python/main.py || fail "python/main.py"
 
 step "Comprobando salidas"
+grep -q "STG_GS3_SINADA_DERIV: " "$LOGFILE" || fail "no hay conteo STG_GS3_SINADA_DERIV"
 grep -q "STG_GS1_SINADA_DERIV: " "$LOGFILE" || fail "no hay conteo STG_GS1_SINADA_DERIV"
 grep -q "STG_GS2_SINADA_DERIV: " "$LOGFILE" || fail "no hay conteo STG_GS2_SINADA_DERIV"
-if grep -E 'STG_GS[12]_SINADA_DERIV: 0 filas' "$LOGFILE"; then
+grep -q "STG_GS4_SINADA_MATRIZ: " "$LOGFILE" || fail "no hay conteo STG_GS4_SINADA_MATRIZ"
+grep -q "STG_GS5_DIRECTORIO: " "$LOGFILE" || fail "no hay conteo STG_GS5_DIRECTORIO"
+grep -q "STG_GS6_REGISTROS: " "$LOGFILE" || fail "no hay conteo STG_GS6_REGISTROS"
+grep -q "STG_GS7_UBIGEO: " "$LOGFILE" || fail "no hay conteo STG_GS7_UBIGEO"
+grep -q "STG_GS8_FERIADOS: " "$LOGFILE" || fail "no hay conteo STG_GS8_FERIADOS"
+if grep -E 'STG_GS[123]_SINADA_DERIV: 0 filas|STG_GS4_SINADA_MATRIZ: 0 filas|STG_GS5_DIRECTORIO: 0 filas|STG_GS6_REGISTROS: 0 filas|STG_GS7_UBIGEO: 0 filas|STG_GS8_FERIADOS: 0 filas' "$LOGFILE"; then
   fail "una STG de Sheets quedó en 0 filas"
 fi
 grep -q "Salida RESULTADO" "$LOGFILE" || fail "no hay Salida RESULTADO en el log"
 grep -q "Excel:" "$LOGFILE" || fail "no se escribió Excel"
-grep -q "Oracle RP_SINADA_DENUNCIAS_DERIVACIONES: " "$LOGFILE" || fail "no hay COUNT(*) Oracle"
+grep -q "Oracle RP_SINADA_DENUNCIAS_DERIVACIONES: " "$LOGFILE" || fail "no hay COUNT(*) de denuncias"
+grep -q "Oracle RP_SINADA_DIRECTORIO_SEFA: " "$LOGFILE" || fail "no hay COUNT(*) de directorio"
+grep -q "Oracle RP_SINADA_REGISTROS: " "$LOGFILE" || fail "no hay COUNT(*) de registros"
+grep -q "Oracle RP_SINADA_UBIGEO: " "$LOGFILE" || fail "no hay COUNT(*) de ubigeo"
+grep -q "Oracle RP_SINADA_FERIADOS: " "$LOGFILE" || fail "no hay COUNT(*) de feriados"
 if grep -q '\${[A-Za-z0-9_]\+}' "$LOGFILE"; then
   fail "log contiene variables Hop sin resolver"
 fi

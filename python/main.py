@@ -20,6 +20,7 @@ if str(HERE) not in sys.path:
     sys.path.insert(0, str(HERE))
 
 from config import load_vars, project_root  # noqa: E402
+from sinada_campos import TABLAS  # noqa: E402
 
 SALIDA_DF = "RESULTADO"
 
@@ -77,7 +78,12 @@ def main() -> int:
         print(f"Salida {nombre}: {len(df)} filas x {len(df.columns)} columnas")
 
     cargar = _load("cargar_dw", HERE / "io" / "cargar_dw.py")
-    cargar.cargar_dw(salidas[SALIDA_DF], root, variables)
+    for nombre, tabla, columnas in TABLAS:
+        frame = ns.get(nombre)
+        if not isinstance(frame, pd.DataFrame):
+            raise SystemExit(f"La lógica no dejó '{nombre}'")
+        print(f"Salida {nombre}: {len(frame)} filas x {len(frame.columns)} columnas")
+        cargar.cargar_dw(frame, root, variables, tabla=tabla, columnas=columnas)
 
     escribir = _load("escribir_excel", HERE / "io" / "escribir_excel.py")
     escribir.escribir_excel(salidas[SALIDA_DF], root)

@@ -1,11 +1,26 @@
-# Homologa STG_GS1 (2020) y STG_GS2 (2021) a los 26 campos de Derivaciones.
+# Homologa Derivaciones 2019, 2020, 2021 y la matriz a una sola tabla.
 # Sin conexiones: los DataFrames llegan de python/io/leer_h2.py.
 
 import re
 
-from sinada_campos import CAMPOS
+from sinada_campos import (
+    ALIAS_MATRIZ,
+    CAMPOS,
+    CAMPOS_DIRECTORIO,
+    CAMPOS_FERIADOS,
+    CAMPOS_REGISTROS,
+    CAMPOS_UBIGEO,
+    COLS_DIRECTORIO,
+    COLS_FERIADOS,
+    COLS_REGISTROS,
+    COLS_UBIGEO,
+    EXTRAS,
+    ORACLE_COLUMNS,
+)
 
 _IDENT_RE = re.compile(r"[^A-Za-z0-9_]")
+_ANIO_CODIGO = re.compile(r"-(20\d{2})$")
+_EXTRA_NOMBRES = [nombre for _header, nombre in EXTRAS]
 
 
 def _sanitize(name: str) -> str:
@@ -37,13 +52,20 @@ def _texto(val):
     return str(val).strip()
 
 
-def _proyectar(df, anio: str):
+def _anio_de_codigo(codigo):
+    if _vacio(codigo):
+        return None
+    hallado = _ANIO_CODIGO.search(str(codigo).strip())
+    return hallado.group(1) if hallado else None
+
+
+def _proyectar(df, campos, etiqueta: str, *, extras: bool = True):
     if df is None or len(getattr(df, "columns", [])) == 0:
-        raise ValueError(f"STG {anio} vacía: no hay columnas")
+        raise ValueError(f"STG {etiqueta} vacía: no hay columnas")
     columnas = {str(col).upper(): col for col in df.columns}
     rename = {}
     faltan = []
-    for header, ora in CAMPOS:
+    for header, ora in campos:
         h2_name = _sanitize(header)
         src = columnas.get(h2_name)
         if src is None:
@@ -51,18 +73,48 @@ def _proyectar(df, anio: str):
         else:
             rename[src] = ora
     if faltan:
-        raise ValueError(f"STG {anio} sin columnas: {', '.join(faltan)}")
-    orden = [ora for _header, ora in CAMPOS]
-    out = df.rename(columns=rename)[orden].copy()
-    for col in orden:
-        out[col] = out[col].map(_texto)
-    vacias = out.apply(lambda row: all(_vacio(v) for v in row), axis=1)
+        raise ValueError(f"STG {etiqueta} sin columnas: {', '.join(faltan)}")
+    # Serie por header. Un rename del marco entero duplica EFA: el sheet ya trae esa columna.
+    data = {ora: df[src].map(_texto) for src, ora in rename.items()}
+    if extras:
+        for col in _EXTRA_NOMBRES:
+            if col not in data:
+                data[col] = None
+    return pd.DataFrame(data)
+
+
+def _catalogo(df, campos, etiqueta: str, columnas: list[str]):
+    out = _proyectar(df, campos, etiqueta, extras=False)
+    vacias = out[columnas].apply(lambda fila: all(_vacio(valor) for valor in fila), axis=1)
+    return out.loc[~vacias, columnas].copy()
+
+
+def _cerrar(out, anio_fijo):
+    es_diccionario = out["CODIGO_SINADA"].map(
+        lambda valor: isinstance(valor, str) and valor.strip().upper() == "COD_SINADA"
+    )
+    out = out.loc[~es_diccionario].copy()
+    negocio = [col for col in ORACLE_COLUMNS if col != "ANIO"]
+    vacias = out[negocio].apply(lambda fila: all(_vacio(valor) for valor in fila), axis=1)
     out = out.loc[~vacias].copy()
-    out["ANIO"] = anio
-    return out
+    if anio_fijo is None:
+        out["ANIO"] = out["CODIGO_SINADA"].map(_anio_de_codigo)
+    else:
+        out["ANIO"] = anio_fijo
+    return out[ORACLE_COLUMNS]
 
 
 RESULTADO = pd.concat(
-    [_proyectar(DERIV_2020, "2020"), _proyectar(DERIV_2021, "2021")],
+    [
+        _cerrar(_proyectar(DERIV_2019, CAMPOS, "2019"), "2019"),
+        _cerrar(_proyectar(DERIV_2020, CAMPOS, "2020"), "2020"),
+        _cerrar(_proyectar(DERIV_2021, CAMPOS, "2021"), "2021"),
+        _cerrar(_proyectar(DERIV_MATRIZ, ALIAS_MATRIZ, "MATRIZ"), None),
+    ],
     ignore_index=True,
 )
+
+DIRECTORIO = _catalogo(DIR_SEFA, CAMPOS_DIRECTORIO, "DIRECTORIO", COLS_DIRECTORIO)
+REGISTROS = _catalogo(CIF_REGISTROS, CAMPOS_REGISTROS, "REGISTROS", COLS_REGISTROS)
+UBIGEO = _catalogo(CIF_UBIGEO, CAMPOS_UBIGEO, "UBIGEO", COLS_UBIGEO)
+FERIADOS = _catalogo(FERIADOS_SRC, CAMPOS_FERIADOS, "FERIADOS", COLS_FERIADOS)

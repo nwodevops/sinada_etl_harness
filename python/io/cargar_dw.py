@@ -1,7 +1,8 @@
 """Carga full-refresh de RESULTADO a Oracle DW.
 
-DDL si la tabla no existe, luego TRUNCATE + INSERT. El esquema sale de
-dw_schema() (DB_ORA_DW_SCHEMA o el usuario en mayúsculas). No va literal en el SQL.
+DDL si la tabla no existe. Si existe y le faltan columnas, DROP + CREATE.
+Si el esquema ya coincide, TRUNCATE + INSERT. El esquema sale de dw_schema()
+(DB_ORA_DW_SCHEMA o el usuario en mayúsculas). No va literal en el SQL.
 """
 
 from __future__ import annotations
@@ -44,9 +45,9 @@ def _connect(variables: dict[str, str]):
     )
 
 
-def _fila(df: pd.DataFrame, index: int) -> tuple:
+def _fila(df: pd.DataFrame, index: int, columnas: list[str]) -> tuple:
     valores = []
-    for col in ORACLE_COLUMNS:
+    for col in columnas:
         val = df.iat[index, df.columns.get_loc(col)]
         if val is None or (isinstance(val, float) and pd.isna(val)):
             valores.append(None)
@@ -62,27 +63,35 @@ def _fila(df: pd.DataFrame, index: int) -> tuple:
     return tuple(valores)
 
 
-def cargar_dw(df: pd.DataFrame, root: Path, variables: dict[str, str]) -> int:
+def cargar_dw(
+    df: pd.DataFrame,
+    root: Path,
+    variables: dict[str, str],
+    *,
+    tabla: str = TABLE,
+    columnas: list[str] | None = None,
+) -> int:
     del root  # la conexión sale de project-config, no de una ruta
-    if list(df.columns) != ORACLE_COLUMNS:
+    columnas = list(ORACLE_COLUMNS if columnas is None else columnas)
+    if list(df.columns) != columnas:
         raise ValueError(
-            "RESULTADO no tiene las columnas Oracle esperadas. "
+            f"{tabla} no tiene las columnas Oracle esperadas. "
             f"recibidas={list(df.columns)}"
         )
 
     schema = _ident(dw_schema(variables))
-    table = _ident(TABLE)
+    table = _ident(tabla)
     qualified = f"{schema}.{table}"
     col_sql = ",\n".join(
         f"    {col} VARCHAR2({4 if col == 'ANIO' else _VARCHAR} CHAR)"
-        for col in ORACLE_COLUMNS
+        for col in columnas
     )
     create_sql = f"CREATE TABLE {qualified} (\n{col_sql}\n)"
     insert_sql = (
         f"INSERT INTO {qualified} ("
-        + ", ".join(ORACLE_COLUMNS)
+        + ", ".join(columnas)
         + ") VALUES ("
-        + ", ".join(f":{i}" for i in range(1, len(ORACLE_COLUMNS) + 1))
+        + ", ".join(f":{i}" for i in range(1, len(columnas) + 1))
         + ")"
     )
 
@@ -99,12 +108,27 @@ def cargar_dw(df: pd.DataFrame, root: Path, variables: dict[str, str]) -> int:
                 {"owner": schema, "tname": table},
             )
             exists = int(cur.fetchone()[0]) > 0
+            if exists:
+                cur.execute(
+                    """
+                    SELECT COLUMN_NAME
+                    FROM ALL_TAB_COLUMNS
+                    WHERE OWNER = :owner AND TABLE_NAME = :tname
+                    ORDER BY COLUMN_ID
+                    """,
+                    {"owner": schema, "tname": table},
+                )
+                actuales = [str(fila[0]) for fila in cur.fetchall()]
+                if actuales != columnas:
+                    cur.execute(f"DROP TABLE {qualified}")
+                    exists = False
+                    print(f"Oracle DROP {qualified} (columnas distintas)")
             if not exists:
                 cur.execute(create_sql)
                 print(f"Oracle DDL {qualified}")
             else:
                 cur.execute(f"TRUNCATE TABLE {qualified}")
-            filas = [_fila(df, i) for i in range(len(df))]
+            filas = [_fila(df, i, columnas) for i in range(len(df))]
             if filas:
                 cur.executemany(insert_sql, filas)
             cur.execute(f"SELECT COUNT(*) FROM {qualified}")

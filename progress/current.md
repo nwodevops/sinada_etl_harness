@@ -2,14 +2,14 @@
 
 | Campo | Valor |
 |---|---|
-| ID | fase-4-oracle (fases 1–3 en el mismo corte) |
-| Criterio | [`CHECKPOINTS.md`](../CHECKPOINTS.md) |
+| ID | fase-5-catalogos |
+| Criterio | Cuatro tablas `RP_SINADA_*` con `COUNT(*)` en el log de init |
 
 ## Hecho
 
-Sheets Derivaciones 2020 y 2021 → `RP_SINADA_DENUNCIAS_DERIVACIONES`.
+Directorio SEFA, REGISTROS, UBIGEO y Feriados en tablas Oracle aparte de `RP_SINADA_DENUNCIAS_DERIVACIONES`.
 
-Evidencia: [`impl_fase-4-oracle.md`](impl_fase-4-oracle.md).
+Evidencia: [`impl_fase-5-catalogos.md`](impl_fase-5-catalogos.md).
 
 ## Windows pendiente de corrida
 
