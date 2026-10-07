@@ -12,7 +12,8 @@ import pandas as pd
 from h2_conn import connect_h2
 
 LECTURAS: dict[str, str] = {
-    "DEMO": "SELECT * FROM PUBLIC.DEMO_TABLA_EJEMPLO",
+    "DERIV_2020": "SELECT * FROM PUBLIC.STG_GS1_SINADA_DERIV",
+    "DERIV_2021": "SELECT * FROM PUBLIC.STG_GS2_SINADA_DERIV",
 }
 
 

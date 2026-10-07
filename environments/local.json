@@ -119,6 +119,11 @@
       "name": "DB_ORA_DW_PASSWORD",
       "value": "<PASSWORD>",
       "description": "Password Oracle DW"
+    },
+    {
+      "name": "DB_ORA_DW_SCHEMA",
+      "value": "<SCHEMA>",
+      "description": "Esquema destino Oracle DW. switch-env lo toma de credenciales o del usuario en mayúsculas"
     }
   ]
 }

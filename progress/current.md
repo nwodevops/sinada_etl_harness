@@ -2,18 +2,15 @@
 
 | Campo | Valor |
 |---|---|
-| ID | *(elegir feature `pending` en feature_list.json)* |
+| ID | fase-4-oracle (fases 1–3 en el mismo corte) |
 | Criterio | [`CHECKPOINTS.md`](../CHECKPOINTS.md) |
 
-## Plan
+## Hecho
 
-1. `./init.sh` → HARNESS OK
-2. Marcar **fase-1-entorno** `in_progress` → completar bootstrap → `done`
-3. Continuar fases 2–3 según CHECKPOINTS
+Sheets Derivaciones 2020 y 2021 → `RP_SINADA_DENUNCIAS_DERIVACIONES`.
 
-## Comandos
+Evidencia: [`impl_fase-4-oracle.md`](impl_fase-4-oracle.md).
 
-```bash
-./init.sh
-./switch-env.sh local
-```
+## Windows pendiente de corrida
+
+`init.bat remote` en el otro equipo. Linux no lo ejecuta.

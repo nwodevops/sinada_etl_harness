@@ -45,7 +45,7 @@ Host, servicio y esquema no van en este archivo. Viven en `environments/local.js
 
 ## Reglas críticas
 
-1. **Un solo `.py`** en `logica/` (el cascarón trae `demo.py`).
+1. **Un solo `.py`** en `logica/` (`sinada_denuncias.py`).
 2. **Sin secretos** en git (`project-config.json` es generado).
 3. **Sin `${VAR}` literal** en logs Hop = variable mal definida.
 4. `logica/` no abre conexiones. I/O en `python/io/`.
@@ -54,4 +54,4 @@ Host, servicio y esquema no van en este archivo. Viven en `environments/local.js
 
 ## Nuevo proyecto
 
-Este repo es un cascarón. Fuentes → `inputs.yaml`. Lecturas → `python/io/leer_h2.py`. Transformación → `logica/<tu>.py`. Destino demo → Excel.
+Fuentes Sheets Derivaciones 2020 y 2021 → `inputs.yaml`. Carga → `python/io/cargar_stg_sheets.py`. Lecturas → `python/io/leer_h2.py`. Homologación → `logica/sinada_denuncias.py`. Destino → `RP_SINADA_DENUNCIAS_DERIVACIONES` en el esquema `DB_ORA_DW_SCHEMA`, más Excel de control.

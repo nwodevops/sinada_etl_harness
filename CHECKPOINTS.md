@@ -28,10 +28,11 @@ Verificación: [`./init.sh`](init.sh).
 
 - [ ] Al menos una fuente en `inputs.yaml`.
 - [ ] Tabla `STG_*` creada en H2.
-- [ ] Pipeline `pl_stage_*.hpl` cableado en `wf_main.hwf`.
-- [ ] Hop carga filas en STG (conteo > 0 en log).
+- [ ] Carga Sheets en `python/io/cargar_stg_sheets.py`, cableada en `wf_main.hwf` (donde iría `pl_stage_*`).
+- [ ] Conteos `STG_GS1_SINADA_DERIV` y `STG_GS2_SINADA_DERIV` > 0 en el log.
 
 Ver skill `hop-python-etl` e [`inputs.example.yaml`](.agents/skills/hop-python-etl/inputs.example.yaml).
+Sheets no pasan por `GoogleSheetsInput`: el paso SHELL usa el mismo `client_secret.json` que la introspección.
 
 ---
 
@@ -45,7 +46,12 @@ Contrato: [`python/CONTRATO.md`](python/CONTRATO.md).
 
 ---
 
-## Fuera de alcance del cascarón
+## Fase 4 — Oracle {#fase-4}
 
-- Modelo dimensional Oracle (`cargar_dw.py`) → copiar cuando el proyecto lo pida.
+- [ ] `python/io/cargar_dw.py` hace DDL si falta, luego `TRUNCATE` + `INSERT`.
+- [ ] Tabla `RP_SINADA_DENUNCIAS_DERIVACIONES` en el esquema `DB_ORA_DW_SCHEMA` (sin esquema literal en el SQL).
+- [ ] El log trae `COUNT(*)` de Oracle y coincide con `RESULTADO`.
+
+## Fuera de alcance
+
 - Fases Kimball / indicadores → no vienen en esta plantilla.

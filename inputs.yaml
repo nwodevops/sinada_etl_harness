@@ -1,6 +1,15 @@
-# Manifiesto de fuentes STG. Python (create_stg.py) crea DDL en H2; Hop extrae filas.
-#
-# Ejemplos: .agents/skills/hop-python-etl/inputs.example.yaml
-# Smoke del arquetipo: sources vacío (solo DEMO_TABLA_EJEMPLO en 01_schema.sql).
+# Manifiesto de fuentes STG. Python (create_stg.py) crea DDL en H2.
+# La carga de filas Sheets la hace python/io/cargar_stg_sheets.py (no Hop).
 
-sources: []
+sources:
+  - stg_table: STG_GS1_SINADA_DERIV
+    type: sheets
+    spreadsheet_key: 1-kyDECU1v4_KcazfqEaX7299t8WApKKlbCsEuYeZKXo
+    worksheet: Derivaciones
+    anio: "2020"
+
+  - stg_table: STG_GS2_SINADA_DERIV
+    type: sheets
+    spreadsheet_key: 1DKMICtS7Tkjv9dFfuJLxs9eqSYSyMuh1B1-22Thlgt0
+    worksheet: Derivaciones
+    anio: "2021"

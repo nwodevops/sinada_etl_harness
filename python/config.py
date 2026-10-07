@@ -100,6 +100,15 @@ def require_live_conn(connection: str, variables: dict[str, str]) -> dict[str, s
     return cv
 
 
+def dw_schema(variables: dict[str, str]) -> str:
+    """Esquema destino. DB_ORA_DW_SCHEMA, o el usuario Oracle en mayúsculas."""
+    cv = require_live_conn("oracle_dw", variables)
+    schema = (variables.get("DB_ORA_DW_SCHEMA") or "").strip()
+    if is_placeholder(schema):
+        schema = cv["username"].upper()
+    return schema
+
+
 def load_sources(root: Path, variables: dict[str, str]) -> list[dict]:
     """Lee inputs.yaml (manifiesto de fuentes STG) resolviendo ${VAR}."""
     path = root / "inputs.yaml"

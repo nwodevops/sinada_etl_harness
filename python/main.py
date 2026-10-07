@@ -4,7 +4,7 @@
   1. SETUP   : project-config.json
   2. ENTRADA : io/leer_h2.py -> DataFrames (LECTURAS)
   3. LOGICA  : único .py en logica/
-  4. SALIDA  : logs + Excel (output/resultado.xlsx)
+  4. SALIDA  : Oracle DW + Excel (output/resultado.xlsx)
 
 Contrato: python/CONTRATO.md
 """
@@ -76,10 +76,13 @@ def main() -> int:
     for nombre, df in salidas.items():
         print(f"Salida {nombre}: {len(df)} filas x {len(df.columns)} columnas")
 
+    cargar = _load("cargar_dw", HERE / "io" / "cargar_dw.py")
+    cargar.cargar_dw(salidas[SALIDA_DF], root, variables)
+
     escribir = _load("escribir_excel", HERE / "io" / "escribir_excel.py")
     escribir.escribir_excel(salidas[SALIDA_DF], root)
 
-    print("Listo (H2 -> logica -> Excel).")
+    print("Listo (H2 -> logica -> Oracle + Excel).")
     return 0
 
 
