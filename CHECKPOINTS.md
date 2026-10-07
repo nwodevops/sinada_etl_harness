@@ -15,43 +15,56 @@ Verificación: [`./init.sh`](init.sh).
 
 ---
 
+## Cierre 2026-10-07
+
+- [x] Linux: `./init.sh` → `HARNESS OK` (`logs/init_20261007.log`).
+- [x] Windows: corrida completa en `wf_main_windows` / `init.bat remote`. El venv se crea en el equipo (no va en git) y lleva `python/requirements.txt`.
+- [x] Ninguna feature `in_progress`.
+
+---
+
 ## Fase 1 — Entorno {#fase-1}
 
-- [ ] H2 levanta en puerto 9092 (`reset_and_create.sh`).
-- [ ] `python/create_stg.py` OK (puede ser no-op con `sources: []`).
-- [ ] `python/main.py` OK con `logica/demo.py`.
-- [ ] `wf_main.hwf` ejecutable en Hop GUI.
+- [x] H2 levanta en puerto 9092 (`reset_and_create.sh` / `reset_and_create.bat`).
+- [x] `python/create_stg.py` crea las STG de `inputs.yaml`.
+- [x] `python/main.py` corre `logica/sinada_denuncias.py`.
+- [x] `wf_main.hwf` (Linux) y `wf_main_windows.hwf` (Windows).
 
 ---
 
 ## Fase 2 — Fuentes STG {#fase-2}
 
-- [ ] Al menos una fuente en `inputs.yaml`.
-- [ ] Tabla `STG_*` creada en H2.
-- [ ] Carga Sheets en `python/io/cargar_stg_sheets.py`, cableada en `wf_main.hwf` (donde iría `pl_stage_*`).
-- [ ] Conteos `STG_GS1_SINADA_DERIV` y `STG_GS2_SINADA_DERIV` > 0 en el log.
+- [x] Ocho fuentes Sheets en `inputs.yaml`.
+- [x] Carga en `python/io/cargar_stg_sheets.py`, cableada en `wf_main.hwf` y en `scripts/step_cargar_sheets.bat`.
+- [x] Conteos > 0: `STG_GS3_SINADA_DERIV`, `STG_GS1_SINADA_DERIV`, `STG_GS2_SINADA_DERIV`, `STG_GS4_SINADA_MATRIZ`, `STG_GS5_DIRECTORIO`, `STG_GS6_REGISTROS`, `STG_GS7_UBIGEO`, `STG_GS8_FERIADOS`.
 
-Ver skill `hop-python-etl` e [`inputs.example.yaml`](.agents/skills/hop-python-etl/inputs.example.yaml).
-Sheets no pasan por `GoogleSheetsInput`: el paso SHELL usa el mismo `client_secret.json` que la introspección.
+Sheets no pasan por `GoogleSheetsInput`. El paso SHELL usa `client_secret.json`.
 
 ---
 
 ## Fase 3 — Lógica {#fase-3}
 
-- [ ] Claves STG en `python/io/leer_h2.py`.
-- [ ] `logica/<tu_logica>.py` produce `RESULTADO` con filas > 0.
-- [ ] `output/resultado.xlsx` generado (si se usa salida Excel).
+- [x] Claves STG en `python/io/leer_h2.py`.
+- [x] `logica/sinada_denuncias.py` deja `RESULTADO` con filas > 0.
+- [x] `output/resultado.xlsx` solo con `RESULTADO`.
 
 Contrato: [`python/CONTRATO.md`](python/CONTRATO.md).
 
 ---
 
-## Fase 4 — Oracle {#fase-4}
+## Fase 4 — Oracle denuncias {#fase-4}
 
-- [ ] `python/io/cargar_dw.py` hace DDL si falta, luego `TRUNCATE` + `INSERT`.
-- [ ] Tabla `RP_SINADA_DENUNCIAS_DERIVACIONES` en el esquema `DB_ORA_DW_SCHEMA` (sin esquema literal en el SQL).
-- [ ] El log trae `COUNT(*)` de Oracle y coincide con `RESULTADO`.
+- [x] `python/io/cargar_dw.py`: `DROP` + `CREATE` si el esquema no coincide; si coincide, `TRUNCATE` + `INSERT`.
+- [x] `RP_SINADA_DENUNCIAS_DERIVACIONES` en el esquema `DB_ORA_DW_SCHEMA` (sin esquema literal en el SQL).
+- [x] El log trae `COUNT(*)` y coincide con `RESULTADO`.
+
+---
+
+## Fase 5 — Catálogos {#fase-5}
+
+- [x] `RP_SINADA_DIRECTORIO_SEFA`, `RP_SINADA_REGISTROS`, `RP_SINADA_UBIGEO`, `RP_SINADA_FERIADOS`.
+- [x] Cada `COUNT(*)` en el log de `init.sh` e `init.bat`. Sin `ANIO`.
 
 ## Fuera de alcance
 
-- Fases Kimball / indicadores → no vienen en esta plantilla.
+- Fases Kimball / indicadores.

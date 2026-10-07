@@ -43,15 +43,14 @@ flowchart LR
 4. Revisor valida contra [`CHECKPOINTS.md`](../../CHECKPOINTS.md).
 5. Si OK → `done`; append resumen en [`progress/history.md`](../../progress/history.md); limpiar o resetear `progress/current.md`.
 
-## Alcance por feature
+## Alcance
 
-Las fases 5–7 del lineamiento tocaron muchos archivos acoplados; **a partir de ahora** conviene granularidad en `feature_list.json` (features infra pequeñas: rename, Windows, remote). Fase 8 Power BI está **fuera de alcance**.
+`feature_list.json` no tiene ninguna `in_progress`. El siguiente cambio abre una feature antes de tocar código.
 
 ## Skills de dominio (no reemplazan el harness)
 
 - [`hop-python-etl`](../../.agents/skills/hop-python-etl/SKILL.md) — Hop/H2/Python
-- [`phased-dwh-lineamiento`](../../.agents/skills/phased-dwh-lineamiento/SKILL.md) — fases 2–7
-- [`auditable-soft-quarantine`](../../.agents/skills/auditable-soft-quarantine/SKILL.md) — DQ
-- [`oracle-cargar-dw`](../../.agents/skills/oracle-cargar-dw/SKILL.md) — carga Oracle
+- [`linux-windows-parity`](../../.agents/skills/linux-windows-parity/SKILL.md) — `init.bat`, `wf_main_windows.hwf`, `run_wf_main.bat`
+- [`etl-run-logs`](../../.agents/skills/etl-run-logs/SKILL.md) — bitácora en `logs/`
 
 El harness responde *cómo trabajar semanas sin perder el hilo*; las skills responden *qué construir*.

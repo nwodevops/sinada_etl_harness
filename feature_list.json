@@ -1,5 +1,5 @@
 {
-  "project": "mi_etl",
+  "project": "sinada_etl_harness",
   "reglas": {
     "una_feature_activa": "Como máximo un item con status in_progress",
     "verificacion": "./init.sh debe terminar en HARNESS OK",

@@ -25,11 +25,6 @@ Corrida previa a `./init.sh`:
 
 `./init.sh` cerró en `HARNESS OK` (2026-10-05). La segunda pasada no recreó la tabla: `TRUNCATE` + `INSERT`, `COUNT(*)` = 6384. Log: `logs/init_20261005.log`.
 
-## Windows (no corrido desde Linux)
+## Windows
 
-Comprobar en el equipo Windows:
-
-1. `powershell -ExecutionPolicy Bypass -File switch-env.ps1 remote`
-2. `init.bat remote` → `HARNESS OK` y `logs/init_YYYYMMDD.log`
-3. Conteos STG > 0 y `COUNT(*)` de `RP_SINADA_DENUNCIAS_DERIVACIONES` en el esquema de `docs/credenciales/remote.txt`
-4. Programador de tareas → `run_wf_main.bat`
+Corrida completa confirmada el 2026-10-07. Detalle en `progress/impl_fase-5-catalogos.md`.

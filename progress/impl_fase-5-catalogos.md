@@ -23,6 +23,6 @@ Fecha: 2026-10-07
 - `Oracle RP_SINADA_DENUNCIAS_DERIVACIONES`: 37059
 - Excel `output/resultado.xlsx`: 37059 x 31
 
-## Windows (no corrido desde Linux)
+## Windows
 
-Comprobar en el equipo Windows: `init.bat remote` hasta `HARNESS OK`.
+Corrida completa confirmada el 2026-10-07 en Windows 11 (`D:\Eder\workspace_etl_oefa\sinada_etl_harness`), después de crear `.venv` e instalar `python/requirements.txt`. El primer intento falló en `create_stg.py` con `No module named 'yaml'` porque el venv no viaja en git.

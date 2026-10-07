@@ -1,16 +1,10 @@
 # Sesión activa
 
+Ninguna. Las cinco features están `done`. Linux y Windows cerraron la corrida el 2026-10-07.
+
 | Campo | Valor |
 |---|---|
-| ID | fase-5-catalogos |
-| Criterio | Cuatro tablas `RP_SINADA_*` con `COUNT(*)` en el log de init |
+| Última | fase-5-catalogos |
+| Evidencia | [`impl_fase-5-catalogos.md`](impl_fase-5-catalogos.md) |
 
-## Hecho
-
-Directorio SEFA, REGISTROS, UBIGEO y Feriados en tablas Oracle aparte de `RP_SINADA_DENUNCIAS_DERIVACIONES`.
-
-Evidencia: [`impl_fase-5-catalogos.md`](impl_fase-5-catalogos.md).
-
-## Windows pendiente de corrida
-
-`init.bat remote` en el otro equipo. Linux no lo ejecuta.
+Siguiente cambio: una feature `pending` y pasarla a `in_progress` antes de tocar código.

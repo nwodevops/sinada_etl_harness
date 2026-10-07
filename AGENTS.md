@@ -54,4 +54,4 @@ Host, servicio y esquema no van en este archivo. Viven en `environments/local.js
 
 ## Nuevo proyecto
 
-Fuentes Sheets Derivaciones 2020 y 2021 → `inputs.yaml`. Carga → `python/io/cargar_stg_sheets.py`. Lecturas → `python/io/leer_h2.py`. Homologación → `logica/sinada_denuncias.py`. Destino → `RP_SINADA_DENUNCIAS_DERIVACIONES` en el esquema `DB_ORA_DW_SCHEMA`, más Excel de control.
+Fuentes en `inputs.yaml` (Derivaciones 2019, 2020, 2021, matriz, Directorio, REGISTROS, UBIGEO, Feriados). Carga → `python/io/cargar_stg_sheets.py`. Lecturas → `python/io/leer_h2.py`. Homologación → `logica/sinada_denuncias.py`. Destino en el esquema `DB_ORA_DW_SCHEMA`: `RP_SINADA_DENUNCIAS_DERIVACIONES`, `RP_SINADA_DIRECTORIO_SEFA`, `RP_SINADA_REGISTROS`, `RP_SINADA_UBIGEO`, `RP_SINADA_FERIADOS`. Excel de control solo de `RESULTADO`.
