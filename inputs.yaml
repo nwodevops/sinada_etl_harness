@@ -1,0 +1,97 @@
+# Manifiesto de fuentes STG. Python (create_stg.py) crea DDL en H2.
+# La carga de filas Sheets la hace python/io/cargar_stg_sheets.py (no Hop).
+
+sources:
+  - stg_table: STG_GS3_SINADA_DERIV
+    type: sheets
+    spreadsheet_key: 1KF03o935qVtfTIG79LoXDw-AQ3GBQap_1cQfIQdw8DM
+    worksheet: Derivaciones
+    anio: "2019"
+
+  - stg_table: STG_GS1_SINADA_DERIV
+    type: sheets
+    spreadsheet_key: 1-kyDECU1v4_KcazfqEaX7299t8WApKKlbCsEuYeZKXo
+    worksheet: Derivaciones
+    anio: "2020"
+
+  - stg_table: STG_GS2_SINADA_DERIV
+    type: sheets
+    spreadsheet_key: 1DKMICtS7Tkjv9dFfuJLxs9eqSYSyMuh1B1-22Thlgt0
+    worksheet: Derivaciones
+    anio: "2021"
+
+  - stg_table: STG_GS4_SINADA_MATRIZ
+    type: sheets
+    spreadsheet_key: 1Ky_6WQuaWfxoXP1keS-Ho4zxXMht3wIYIjaOW3fBXSc
+    worksheet: Derivaciones
+    anio: matriz
+
+  - stg_table: STG_GS5_DIRECTORIO
+    type: sheets
+    spreadsheet_key: 1pjHXiz15Zmw-49Nr4o1YdXJnddUX74n7Tbdf5SH7Lb0
+    worksheet: Directorio
+
+  - stg_table: STG_GS6_REGISTROS
+    type: sheets
+    spreadsheet_key: 1iHQSOl7UVbGSjDsnWLqJFeZw1QP7GnHWEcbYJo9XwPA
+    worksheet: REGISTROS
+
+  - stg_table: STG_GS7_UBIGEO
+    type: sheets
+    spreadsheet_key: 1iHQSOl7UVbGSjDsnWLqJFeZw1QP7GnHWEcbYJo9XwPA
+    worksheet: UBIGEO
+
+  - stg_table: STG_GS8_FERIADOS
+    type: sheets
+    spreadsheet_key: 18r2ss-YOuqVp1XoZwHk19ZUBDFkrEBL_c8PRpLmlzAk
+    worksheet: Feriados
+
+  - stg_table: STG_GS9_OEFA_REGISTROS
+    type: sheets
+    spreadsheet_key: 1vSucxUTnRtxt88A_5DttJuwTfQkbeBI9zv9JhXbTPjw
+    worksheet: Registros
+
+  - stg_table: STG_GS10_OEFA_SEGUIMIENTO
+    type: sheets
+    spreadsheet_key: 1vSucxUTnRtxt88A_5DttJuwTfQkbeBI9zv9JhXbTPjw
+    worksheet: Seguimiento
+
+  - stg_table: STG_GS11_OEFA_ASIGNACIONES
+    type: sheets
+    spreadsheet_key: 1vSucxUTnRtxt88A_5DttJuwTfQkbeBI9zv9JhXbTPjw
+    worksheet: Asignaciones
+
+  - stg_table: STG_GS12_OEFA_EVALUACION
+    type: sheets
+    spreadsheet_key: 1vSucxUTnRtxt88A_5DttJuwTfQkbeBI9zv9JhXbTPjw
+    worksheet: Evaluacion
+
+  - stg_table: STG_GS13_OEFA_VALIDACION
+    type: sheets
+    spreadsheet_key: 1vSucxUTnRtxt88A_5DttJuwTfQkbeBI9zv9JhXbTPjw
+    worksheet: Validacion
+
+  - stg_table: STG_GS14_OEFA_DOC_COMUNIC
+    type: sheets
+    spreadsheet_key: 1vSucxUTnRtxt88A_5DttJuwTfQkbeBI9zv9JhXbTPjw
+    worksheet: DocumentosComunic
+
+  - stg_table: STG_GS15_OEFA_DOC_DERIV
+    type: sheets
+    spreadsheet_key: 1vSucxUTnRtxt88A_5DttJuwTfQkbeBI9zv9JhXbTPjw
+    worksheet: DocumentosDeriv
+
+  - stg_table: STG_GS16_OEFA_VAL_RPTA
+    type: sheets
+    spreadsheet_key: 1vSucxUTnRtxt88A_5DttJuwTfQkbeBI9zv9JhXbTPjw
+    worksheet: ValidacionRpta
+
+  - stg_table: STG_GS17_OEFA_DOC_REI
+    type: sheets
+    spreadsheet_key: 1vSucxUTnRtxt88A_5DttJuwTfQkbeBI9zv9JhXbTPjw
+    worksheet: DocumentosRei
+
+  - stg_table: STG_GS18_OEFA_DOC_OCI
+    type: sheets
+    spreadsheet_key: 1vSucxUTnRtxt88A_5DttJuwTfQkbeBI9zv9JhXbTPjw
+    worksheet: DocumentosOci

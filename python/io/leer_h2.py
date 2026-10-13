@@ -1,0 +1,70 @@
+"""ENTRADA post-staging: H2 -> pandas DataFrames.
+
+Claves = nombres inyectados en logica/. Ampliar al añadir STG_*.
+"""
+
+from __future__ import annotations
+
+from pathlib import Path
+
+import pandas as pd
+
+from h2_conn import connect_h2
+
+LECTURAS: dict[str, str] = {
+    "DERIV_2019": "SELECT * FROM PUBLIC.STG_GS3_SINADA_DERIV",
+    "DERIV_2020": "SELECT * FROM PUBLIC.STG_GS1_SINADA_DERIV",
+    "DERIV_2021": "SELECT * FROM PUBLIC.STG_GS2_SINADA_DERIV",
+    "DERIV_MATRIZ": "SELECT * FROM PUBLIC.STG_GS4_SINADA_MATRIZ",
+    "DIR_SEFA": "SELECT * FROM PUBLIC.STG_GS5_DIRECTORIO",
+    "CIF_REGISTROS": "SELECT * FROM PUBLIC.STG_GS6_REGISTROS",
+    "CIF_UBIGEO": "SELECT * FROM PUBLIC.STG_GS7_UBIGEO",
+    "FERIADOS_SRC": "SELECT * FROM PUBLIC.STG_GS8_FERIADOS",
+    "OEFA_REGISTROS": "SELECT * FROM PUBLIC.STG_GS9_OEFA_REGISTROS",
+    "OEFA_SEGUIMIENTO": "SELECT * FROM PUBLIC.STG_GS10_OEFA_SEGUIMIENTO",
+    "OEFA_ASIGNACIONES": "SELECT * FROM PUBLIC.STG_GS11_OEFA_ASIGNACIONES",
+    "OEFA_EVALUACION": "SELECT * FROM PUBLIC.STG_GS12_OEFA_EVALUACION",
+    "OEFA_VALIDACION": "SELECT * FROM PUBLIC.STG_GS13_OEFA_VALIDACION",
+    "OEFA_DOC_COMUNIC": "SELECT * FROM PUBLIC.STG_GS14_OEFA_DOC_COMUNIC",
+    "OEFA_DOC_DERIV": "SELECT * FROM PUBLIC.STG_GS15_OEFA_DOC_DERIV",
+    "OEFA_VAL_RPTA": "SELECT * FROM PUBLIC.STG_GS16_OEFA_VAL_RPTA",
+    "OEFA_DOC_REI": "SELECT * FROM PUBLIC.STG_GS17_OEFA_DOC_REI",
+    "OEFA_DOC_OCI": "SELECT * FROM PUBLIC.STG_GS18_OEFA_DOC_OCI",
+}
+
+
+def _coerce_dates(df: pd.DataFrame) -> pd.DataFrame:
+    out = df.copy()
+    for col in out.columns:
+        if pd.api.types.is_datetime64_any_dtype(out[col]):
+            out[col] = pd.to_datetime(out[col]).dt.date
+    return out
+
+
+def leer_h2(root: Path, variables: dict[str, str]) -> dict[str, pd.DataFrame]:
+    if not LECTURAS:
+        raise ValueError("LECTURAS vacío; agrega queries en python/io/leer_h2.py")
+
+    conn = connect_h2(root, variables)
+    datos: dict[str, pd.DataFrame] = {}
+    try:
+        cur = conn.cursor()
+        try:
+            for nombre, query in LECTURAS.items():
+                try:
+                    cur.execute(query)
+                except Exception as exc:
+                    msg = str(exc).split("\n")[0][:120]
+                    print(f"AVISO: {nombre} no disponible ({msg}); DataFrame vacío")
+                    datos[nombre] = pd.DataFrame()
+                    continue
+                cols = [d[0] for d in cur.description]
+                rows = cur.fetchall()
+                df = pd.DataFrame.from_records(rows, columns=cols)
+                datos[nombre] = _coerce_dates(df)
+                print(f"{nombre}: {len(datos[nombre])} x {len(datos[nombre].columns)}")
+        finally:
+            cur.close()
+    finally:
+        conn.close()
+    return datos

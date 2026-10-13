@@ -1,0 +1,127 @@
+@echo off
+setlocal EnableExtensions
+cd /d "%~dp0"
+
+set "ENV=%~1"
+if "%ENV%"=="" set "ENV=remote"
+
+set "LOGDIR=%~dp0logs"
+if not exist "%LOGDIR%" mkdir "%LOGDIR%"
+for /f %%a in ('powershell -NoProfile -Command "Get-Date -Format yyyyMMdd"') do set "STAMP=%%a"
+set "LOGFILE=%LOGDIR%\init_%STAMP%.log"
+set "STEP=%TEMP%\sinada_init_step.txt"
+
+call :log === init %ENV% %date% %time% ===
+
+where java >nul 2>&1
+if errorlevel 1 goto :fail
+if not exist "h2\lib\h2-2.4.240.jar" goto :fail
+if not exist ".venv\Scripts\python.exe" goto :fail
+if not exist "client_secret.json" goto :fail
+
+echo ==^> Prerrequisitos
+echo ==^> Prerrequisitos>> "%LOGFILE%"
+
+call :log ==> Entorno %ENV%
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0switch-env.ps1" %ENV% > "%STEP%" 2>&1
+set "RC=%ERRORLEVEL%"
+call :append
+if not "%RC%"=="0" goto :fail
+
+call :log ==> Reset H2
+call scripts\step_reset_h2.bat > "%STEP%" 2>&1
+set "RC=%ERRORLEVEL%"
+call :append
+if not "%RC%"=="0" goto :fail
+
+call :log ==> Python create STG
+call scripts\step_create_stg.bat > "%STEP%" 2>&1
+set "RC=%ERRORLEVEL%"
+call :append
+if not "%RC%"=="0" goto :fail
+
+call :log ==> Cargar Sheets
+call scripts\step_cargar_sheets.bat > "%STEP%" 2>&1
+set "RC=%ERRORLEVEL%"
+call :append
+if not "%RC%"=="0" goto :fail
+
+call :log ==> Python main
+call scripts\step_main.bat > "%STEP%" 2>&1
+set "RC=%ERRORLEVEL%"
+call :append
+if not "%RC%"=="0" goto :fail
+
+findstr /C:"STG_GS3_SINADA_DERIV: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS1_SINADA_DERIV: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS2_SINADA_DERIV: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS4_SINADA_MATRIZ: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS5_DIRECTORIO: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS6_REGISTROS: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS7_UBIGEO: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS8_FERIADOS: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS9_OEFA_REGISTROS: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS10_OEFA_SEGUIMIENTO: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS11_OEFA_ASIGNACIONES: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS12_OEFA_EVALUACION: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS13_OEFA_VALIDACION: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS14_OEFA_DOC_COMUNIC: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS15_OEFA_DOC_DERIV: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS16_OEFA_VAL_RPTA: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS17_OEFA_DOC_REI: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS18_OEFA_DOC_OCI: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS3_SINADA_DERIV: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS1_SINADA_DERIV: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS2_SINADA_DERIV: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS4_SINADA_MATRIZ: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS5_DIRECTORIO: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS6_REGISTROS: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS7_UBIGEO: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS8_FERIADOS: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS9_OEFA_REGISTROS: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS10_OEFA_SEGUIMIENTO: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS11_OEFA_ASIGNACIONES: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS12_OEFA_EVALUACION: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS13_OEFA_VALIDACION: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS14_OEFA_DOC_COMUNIC: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS15_OEFA_DOC_DERIV: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS16_OEFA_VAL_RPTA: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS17_OEFA_DOC_REI: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS18_OEFA_DOC_OCI: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"Salida RESULTADO" "%LOGFILE%" >nul || goto :fail
+findstr /C:"Excel:" "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_DENUNCIAS_DERIVACIONES: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_DIRECTORIO_SEFA: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_REGISTROS: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_UBIGEO: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_FERIADOS: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_OEFA_REGISTROS: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_OEFA_SEGUIMIENTO: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_OEFA_ASIGNACIONES: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_OEFA_EVALUACION: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_OEFA_VALIDACION: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_OEFA_DOC_COMUNIC: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_OEFA_DOC_DERIV: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_OEFA_VAL_RPTA: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_OEFA_DOC_REI: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_OEFA_DOC_OCI: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"${" "%LOGFILE%" >nul && goto :fail
+
+echo HARNESS OK — ver CHECKPOINTS.md
+echo HARNESS OK — ver CHECKPOINTS.md>> "%LOGFILE%"
+exit /b 0
+
+:append
+type "%STEP%"
+type "%STEP%" >> "%LOGFILE%"
+exit /b 0
+
+:log
+echo %*
+echo %*>> "%LOGFILE%"
+exit /b 0
+
+:fail
+echo FAIL
+echo FAIL>> "%LOGFILE%"
+exit /b 1
