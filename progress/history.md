@@ -29,3 +29,9 @@ Directorio SEFA, REGISTROS, UBIGEO y Feriados en `RP_SINADA_DIRECTORIO_SEFA`, `R
 ## 2026-10-13 — fase-6-oefa
 
 Diez pestañas de `TABLAS SINADA_OEFA v11` en `RP_SINADA_OEFA_*`. `./init.sh` cerró en `HARNESS OK`. Evidencia: `progress/impl_fase-6-oefa.md`.
+
+---
+
+## 2026-10-13 — fase-7-tipos
+
+Los 60 campos del listado quedaron `DATE` o `NUMBER`. El resto sigue `VARCHAR2`. `./init.sh` cerró en `HARNESS OK`. Evidencia: `progress/impl_fase-7-tipos.md`.

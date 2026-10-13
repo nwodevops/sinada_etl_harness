@@ -34,7 +34,8 @@ git rm -rf --ignore-unmatch \
   ESTRUCTURA.md \
   input/notas.txt \
   python/plantilla_logica.py \
-  pipelines/pl_demo.hpl
+  pipelines/pl_demo.hpl \
+  docs/credenciales
 
 python3 - <<'PY'
 from pathlib import Path

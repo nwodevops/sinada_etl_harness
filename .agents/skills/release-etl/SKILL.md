@@ -23,11 +23,12 @@ El script exige el árbol de `master` limpio, arma un commit huérfano (sin hist
 - Arnés: `feature_list.json`, `CHECKPOINTS.md`, `progress/`, `docs/harness/`, `docs/verification.md`
 - Agente y skills: `AGENTS.md`, `.agents/`
 - Notas que no ejecutan nada: `ESTRUCTURA.md`, `input/notas.txt`, `python/plantilla_logica.py`, `pipelines/pl_demo.hpl`
+- `docs/credenciales/`, aunque en `master` esté trackeado. En la máquina remote se copia aparte.
 
 ## Qué se queda
 
-- `python/` de la corrida y `logica/medidas.py` (sin `python/plantilla_logica.py`)
-- `inputs.yaml`, `input/fuentes_medidas.json`
+- `python/` de la corrida y `logica/sinada_denuncias.py` (sin `python/plantilla_logica.py`)
+- `inputs.yaml`
 - `h2/`, `metadata/`, `workflows/wf_main.hwf`, `workflows/wf_main_windows.hwf`, `workflows/wf_create_stg.hwf`
 - `environments/`, `switch-env.sh`, `switch-env.ps1`
 - `scripts/step_*.bat`, `scripts/_py.bat`, `scripts/get_var.ps1`, `run_wf_main.bat`
@@ -38,4 +39,4 @@ El script exige el árbol de `master` limpio, arma un commit huérfano (sin hist
 
 ## Cambio de código solo en release
 
-`init.sh` e `init.bat` en `master` validan `feature_list.json`. En `release` ese archivo no existe. El script quita ese chequeo en las copias de la rama. El resto de `init` (switch-env, H2, las tres cargas, `main.py`, `verificar.py`, log en `logs/`) se conserva.
+`init.sh` e `init.bat` en `master` validan `feature_list.json`. En `release` ese archivo no existe. El script quita ese chequeo en las copias de la rama. El resto de `init` (switch-env, H2, las tres cargas, `main.py`, log en `logs/`) se conserva.

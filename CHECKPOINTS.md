@@ -72,6 +72,13 @@ Contrato: [`python/CONTRATO.md`](python/CONTRATO.md).
 - [x] Diez pestañas de `TABLAS SINADA_OEFA v11` en `RP_SINADA_OEFA_*`. Sin `ANIO` y sin campo calculado.
 - [x] `./init.sh` → `HARNESS OK` (`logs/init_20261013.log`). Cada `COUNT(*)` en `init.sh` e `init.bat`.
 
+---
+
+## Fase 7 — Tipos {#fase-7}
+
+- [x] Los 60 campos de `input/req_user/DETALLE CAMPOS.xlsx` salen `DATE` o `NUMBER`. El resto sigue `VARCHAR2`.
+- [x] `./init.sh` → `HARNESS OK` el 2026-10-13, con `DROP` por esquema distinto en las tablas tocadas.
+
 ## Fuera de alcance
 
 - Fases Kimball / indicadores.

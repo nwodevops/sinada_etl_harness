@@ -1,11 +1,11 @@
 # Sesión activa
 
-Ninguna. Las seis features están `done`.
+Ninguna. Las siete features están `done`.
 
 | Campo | Valor |
 |---|---|
-| Última | fase-6-oefa |
-| Evidencia | [`impl_fase-6-oefa.md`](impl_fase-6-oefa.md) |
+| Última | fase-7-tipos |
+| Evidencia | [`impl_fase-7-tipos.md`](impl_fase-7-tipos.md) |
 
 Siguiente cambio: una feature `pending` y pasarla a `in_progress` antes de tocar código.
 

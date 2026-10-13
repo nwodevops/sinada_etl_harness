@@ -19,6 +19,17 @@ if not exist "h2\lib\h2-2.4.240.jar" goto :fail
 if not exist ".venv\Scripts\python.exe" goto :fail
 if not exist "client_secret.json" goto :fail
 
+echo ==^> Validando feature_list.json
+echo ==^> Validando feature_list.json>> "%LOGFILE%"
+call "%~dp0scripts\_py.bat"
+if errorlevel 1 goto :fail
+"%PY%" -c "import json,sys; from pathlib import Path; data=json.loads(Path('feature_list.json').read_text(encoding='utf-8')); active=[f for f in data.get('features',[]) if f.get('status')=='in_progress']; print('features:', len(data.get('features',[])), 'in_progress:', len(active)); sys.exit(1 if len(active)>1 else 0)" > "%STEP%" 2>&1
+set "RC=%ERRORLEVEL%"
+call :append
+if not "%RC%"=="0" goto :fail
+echo ==^> Prerrequisitos
+echo ==^> Prerrequisitos>> "%LOGFILE%"
+
 call :log ==> Entorno %ENV%
 powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0switch-env.ps1" %ENV% > "%STEP%" 2>&1
 set "RC=%ERRORLEVEL%"

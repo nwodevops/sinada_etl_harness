@@ -47,6 +47,13 @@
       "status": "done",
       "criterio": "Diez tablas RP_SINADA_OEFA_* con COUNT(*) en el log de init",
       "doc": "inputs.yaml"
+    },
+    {
+      "id": "fase-7-tipos",
+      "title": "DATE y NUMBER en los campos del listado",
+      "status": "done",
+      "criterio": "Esas columnas salen DATE o NUMBER y ./init.sh termina en HARNESS OK",
+      "doc": "input/req_user/DETALLE CAMPOS.xlsx"
     }
   ]
 }
