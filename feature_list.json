@@ -40,6 +40,13 @@
       "status": "done",
       "criterio": "Cuatro tablas RP_SINADA_* con COUNT(*) en el log de init",
       "doc": "input/notas.txt"
+    },
+    {
+      "id": "fase-6-oefa",
+      "title": "Diez tablas TABLAS SINADA_OEFA v11",
+      "status": "done",
+      "criterio": "Diez tablas RP_SINADA_OEFA_* con COUNT(*) en el log de init",
+      "doc": "inputs.yaml"
     }
   ]
 }

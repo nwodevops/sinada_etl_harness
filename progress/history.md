@@ -23,3 +23,9 @@ Directorio SEFA, REGISTROS, UBIGEO y Feriados en `RP_SINADA_DIRECTORIO_SEFA`, `R
 ## 2026-10-07 — cierre Linux y Windows
 
 `./init.sh` en Linux y la corrida Windows (`init.bat remote` / `wf_main_windows`) terminaron bien. Ninguna feature `in_progress`. Evidencia: `progress/impl_fase-5-catalogos.md`.
+
+---
+
+## 2026-10-13 — fase-6-oefa
+
+Diez pestañas de `TABLAS SINADA_OEFA v11` en `RP_SINADA_OEFA_*`. `./init.sh` cerró en `HARNESS OK`. Evidencia: `progress/impl_fase-6-oefa.md`.

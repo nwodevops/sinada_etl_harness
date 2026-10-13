@@ -1,10 +1,14 @@
 # Sesión activa
 
-Ninguna. Las cinco features están `done`. Linux y Windows cerraron la corrida el 2026-10-07.
+Ninguna. Las seis features están `done`.
 
 | Campo | Valor |
 |---|---|
-| Última | fase-5-catalogos |
-| Evidencia | [`impl_fase-5-catalogos.md`](impl_fase-5-catalogos.md) |
+| Última | fase-6-oefa |
+| Evidencia | [`impl_fase-6-oefa.md`](impl_fase-6-oefa.md) |
 
 Siguiente cambio: una feature `pending` y pasarla a `in_progress` antes de tocar código.
+
+## Windows pendiente de esta fase
+
+`init.bat remote` en el otro equipo. Linux no lo ejecuta.

@@ -57,6 +57,16 @@ findstr /C:"STG_GS5_DIRECTORIO: " "%LOGFILE%" >nul || goto :fail
 findstr /C:"STG_GS6_REGISTROS: " "%LOGFILE%" >nul || goto :fail
 findstr /C:"STG_GS7_UBIGEO: " "%LOGFILE%" >nul || goto :fail
 findstr /C:"STG_GS8_FERIADOS: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS9_OEFA_REGISTROS: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS10_OEFA_SEGUIMIENTO: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS11_OEFA_ASIGNACIONES: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS12_OEFA_EVALUACION: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS13_OEFA_VALIDACION: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS14_OEFA_DOC_COMUNIC: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS15_OEFA_DOC_DERIV: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS16_OEFA_VAL_RPTA: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS17_OEFA_DOC_REI: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"STG_GS18_OEFA_DOC_OCI: " "%LOGFILE%" >nul || goto :fail
 findstr /C:"STG_GS3_SINADA_DERIV: 0 filas" "%LOGFILE%" >nul && goto :fail
 findstr /C:"STG_GS1_SINADA_DERIV: 0 filas" "%LOGFILE%" >nul && goto :fail
 findstr /C:"STG_GS2_SINADA_DERIV: 0 filas" "%LOGFILE%" >nul && goto :fail
@@ -65,6 +75,16 @@ findstr /C:"STG_GS5_DIRECTORIO: 0 filas" "%LOGFILE%" >nul && goto :fail
 findstr /C:"STG_GS6_REGISTROS: 0 filas" "%LOGFILE%" >nul && goto :fail
 findstr /C:"STG_GS7_UBIGEO: 0 filas" "%LOGFILE%" >nul && goto :fail
 findstr /C:"STG_GS8_FERIADOS: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS9_OEFA_REGISTROS: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS10_OEFA_SEGUIMIENTO: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS11_OEFA_ASIGNACIONES: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS12_OEFA_EVALUACION: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS13_OEFA_VALIDACION: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS14_OEFA_DOC_COMUNIC: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS15_OEFA_DOC_DERIV: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS16_OEFA_VAL_RPTA: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS17_OEFA_DOC_REI: 0 filas" "%LOGFILE%" >nul && goto :fail
+findstr /C:"STG_GS18_OEFA_DOC_OCI: 0 filas" "%LOGFILE%" >nul && goto :fail
 findstr /C:"Salida RESULTADO" "%LOGFILE%" >nul || goto :fail
 findstr /C:"Excel:" "%LOGFILE%" >nul || goto :fail
 findstr /C:"Oracle RP_SINADA_DENUNCIAS_DERIVACIONES: " "%LOGFILE%" >nul || goto :fail
@@ -72,6 +92,16 @@ findstr /C:"Oracle RP_SINADA_DIRECTORIO_SEFA: " "%LOGFILE%" >nul || goto :fail
 findstr /C:"Oracle RP_SINADA_REGISTROS: " "%LOGFILE%" >nul || goto :fail
 findstr /C:"Oracle RP_SINADA_UBIGEO: " "%LOGFILE%" >nul || goto :fail
 findstr /C:"Oracle RP_SINADA_FERIADOS: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_OEFA_REGISTROS: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_OEFA_SEGUIMIENTO: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_OEFA_ASIGNACIONES: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_OEFA_EVALUACION: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_OEFA_VALIDACION: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_OEFA_DOC_COMUNIC: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_OEFA_DOC_DERIV: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_OEFA_VAL_RPTA: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_OEFA_DOC_REI: " "%LOGFILE%" >nul || goto :fail
+findstr /C:"Oracle RP_SINADA_OEFA_DOC_OCI: " "%LOGFILE%" >nul || goto :fail
 findstr /C:"${" "%LOGFILE%" >nul && goto :fail
 
 echo HARNESS OK — ver CHECKPOINTS.md

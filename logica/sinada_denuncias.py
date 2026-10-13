@@ -20,6 +20,7 @@ from sinada_campos import (
 
 _IDENT_RE = re.compile(r"[^A-Za-z0-9_]")
 _ANIO_CODIGO = re.compile(r"-(20\d{2})$")
+_FANTASMA = re.compile(r"^COLUMNA?_\d+$")
 _EXTRA_NOMBRES = [nombre for _header, nombre in EXTRAS]
 
 
@@ -118,3 +119,32 @@ DIRECTORIO = _catalogo(DIR_SEFA, CAMPOS_DIRECTORIO, "DIRECTORIO", COLS_DIRECTORI
 REGISTROS = _catalogo(CIF_REGISTROS, CAMPOS_REGISTROS, "REGISTROS", COLS_REGISTROS)
 UBIGEO = _catalogo(CIF_UBIGEO, CAMPOS_UBIGEO, "UBIGEO", COLS_UBIGEO)
 FERIADOS = _catalogo(FERIADOS_SRC, CAMPOS_FERIADOS, "FERIADOS", COLS_FERIADOS)
+
+
+def _hoja(df, etiqueta: str):
+    """Pasa las columnas H2 tal cual. Sin cálculo. Bota columnas fantasma vacías y filas vacías."""
+    if df is None or len(getattr(df, "columns", [])) == 0:
+        raise ValueError(f"STG {etiqueta} vacía: no hay columnas")
+    data = {}
+    for col in df.columns:
+        nombre = str(col).upper()
+        serie = df[col].map(_texto)
+        if _FANTASMA.fullmatch(nombre) and bool(serie.map(_vacio).all()):
+            continue
+        data[nombre] = serie
+    out = pd.DataFrame(data)
+    columnas = list(out.columns)
+    vacias = out[columnas].apply(lambda fila: all(_vacio(valor) for valor in fila), axis=1)
+    return out.loc[~vacias, columnas].copy()
+
+
+OEFA_REGISTROS = _hoja(OEFA_REGISTROS, "OEFA_REGISTROS")
+OEFA_SEGUIMIENTO = _hoja(OEFA_SEGUIMIENTO, "OEFA_SEGUIMIENTO")
+OEFA_ASIGNACIONES = _hoja(OEFA_ASIGNACIONES, "OEFA_ASIGNACIONES")
+OEFA_EVALUACION = _hoja(OEFA_EVALUACION, "OEFA_EVALUACION")
+OEFA_VALIDACION = _hoja(OEFA_VALIDACION, "OEFA_VALIDACION")
+OEFA_DOC_COMUNIC = _hoja(OEFA_DOC_COMUNIC, "OEFA_DOC_COMUNIC")
+OEFA_DOC_DERIV = _hoja(OEFA_DOC_DERIV, "OEFA_DOC_DERIV")
+OEFA_VAL_RPTA = _hoja(OEFA_VAL_RPTA, "OEFA_VAL_RPTA")
+OEFA_DOC_REI = _hoja(OEFA_DOC_REI, "OEFA_DOC_REI")
+OEFA_DOC_OCI = _hoja(OEFA_DOC_OCI, "OEFA_DOC_OCI")

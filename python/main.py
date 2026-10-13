@@ -83,6 +83,8 @@ def main() -> int:
         if not isinstance(frame, pd.DataFrame):
             raise SystemExit(f"La lógica no dejó '{nombre}'")
         print(f"Salida {nombre}: {len(frame)} filas x {len(frame.columns)} columnas")
+        if columnas is None:
+            columnas = list(frame.columns)
         cargar.cargar_dw(frame, root, variables, tabla=tabla, columnas=columnas)
 
     escribir = _load("escribir_excel", HERE / "io" / "escribir_excel.py")

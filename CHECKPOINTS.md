@@ -65,6 +65,13 @@ Contrato: [`python/CONTRATO.md`](python/CONTRATO.md).
 - [x] `RP_SINADA_DIRECTORIO_SEFA`, `RP_SINADA_REGISTROS`, `RP_SINADA_UBIGEO`, `RP_SINADA_FERIADOS`.
 - [x] Cada `COUNT(*)` en el log de `init.sh` e `init.bat`. Sin `ANIO`.
 
+---
+
+## Fase 6 — SINADA OEFA {#fase-6}
+
+- [x] Diez pestañas de `TABLAS SINADA_OEFA v11` en `RP_SINADA_OEFA_*`. Sin `ANIO` y sin campo calculado.
+- [x] `./init.sh` → `HARNESS OK` (`logs/init_20261013.log`). Cada `COUNT(*)` en `init.sh` e `init.bat`.
+
 ## Fuera de alcance
 
 - Fases Kimball / indicadores.

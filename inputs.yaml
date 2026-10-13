@@ -45,3 +45,53 @@ sources:
     type: sheets
     spreadsheet_key: 18r2ss-YOuqVp1XoZwHk19ZUBDFkrEBL_c8PRpLmlzAk
     worksheet: Feriados
+
+  - stg_table: STG_GS9_OEFA_REGISTROS
+    type: sheets
+    spreadsheet_key: 1vSucxUTnRtxt88A_5DttJuwTfQkbeBI9zv9JhXbTPjw
+    worksheet: Registros
+
+  - stg_table: STG_GS10_OEFA_SEGUIMIENTO
+    type: sheets
+    spreadsheet_key: 1vSucxUTnRtxt88A_5DttJuwTfQkbeBI9zv9JhXbTPjw
+    worksheet: Seguimiento
+
+  - stg_table: STG_GS11_OEFA_ASIGNACIONES
+    type: sheets
+    spreadsheet_key: 1vSucxUTnRtxt88A_5DttJuwTfQkbeBI9zv9JhXbTPjw
+    worksheet: Asignaciones
+
+  - stg_table: STG_GS12_OEFA_EVALUACION
+    type: sheets
+    spreadsheet_key: 1vSucxUTnRtxt88A_5DttJuwTfQkbeBI9zv9JhXbTPjw
+    worksheet: Evaluacion
+
+  - stg_table: STG_GS13_OEFA_VALIDACION
+    type: sheets
+    spreadsheet_key: 1vSucxUTnRtxt88A_5DttJuwTfQkbeBI9zv9JhXbTPjw
+    worksheet: Validacion
+
+  - stg_table: STG_GS14_OEFA_DOC_COMUNIC
+    type: sheets
+    spreadsheet_key: 1vSucxUTnRtxt88A_5DttJuwTfQkbeBI9zv9JhXbTPjw
+    worksheet: DocumentosComunic
+
+  - stg_table: STG_GS15_OEFA_DOC_DERIV
+    type: sheets
+    spreadsheet_key: 1vSucxUTnRtxt88A_5DttJuwTfQkbeBI9zv9JhXbTPjw
+    worksheet: DocumentosDeriv
+
+  - stg_table: STG_GS16_OEFA_VAL_RPTA
+    type: sheets
+    spreadsheet_key: 1vSucxUTnRtxt88A_5DttJuwTfQkbeBI9zv9JhXbTPjw
+    worksheet: ValidacionRpta
+
+  - stg_table: STG_GS17_OEFA_DOC_REI
+    type: sheets
+    spreadsheet_key: 1vSucxUTnRtxt88A_5DttJuwTfQkbeBI9zv9JhXbTPjw
+    worksheet: DocumentosRei
+
+  - stg_table: STG_GS18_OEFA_DOC_OCI
+    type: sheets
+    spreadsheet_key: 1vSucxUTnRtxt88A_5DttJuwTfQkbeBI9zv9JhXbTPjw
+    worksheet: DocumentosOci

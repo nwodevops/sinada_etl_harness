@@ -154,11 +154,27 @@ CAMPOS_FERIADOS: list[tuple[str, str]] = [
 ]
 COLS_FERIADOS = [nombre for _header, nombre in CAMPOS_FERIADOS]
 
-# (nombre del DataFrame en logica/, tabla Oracle, columnas)
-TABLAS: list[tuple[str, str, list[str]]] = [
+# (nombre del DataFrame en logica/, tabla Oracle). Las columnas salen del header saneado.
+HOJAS_OEFA: list[tuple[str, str]] = [
+    ("OEFA_REGISTROS", "RP_SINADA_OEFA_REGISTROS"),
+    ("OEFA_SEGUIMIENTO", "RP_SINADA_OEFA_SEGUIMIENTO"),
+    ("OEFA_ASIGNACIONES", "RP_SINADA_OEFA_ASIGNACIONES"),
+    ("OEFA_EVALUACION", "RP_SINADA_OEFA_EVALUACION"),
+    ("OEFA_VALIDACION", "RP_SINADA_OEFA_VALIDACION"),
+    ("OEFA_DOC_COMUNIC", "RP_SINADA_OEFA_DOC_COMUNIC"),
+    ("OEFA_DOC_DERIV", "RP_SINADA_OEFA_DOC_DERIV"),
+    ("OEFA_VAL_RPTA", "RP_SINADA_OEFA_VAL_RPTA"),
+    ("OEFA_DOC_REI", "RP_SINADA_OEFA_DOC_REI"),
+    ("OEFA_DOC_OCI", "RP_SINADA_OEFA_DOC_OCI"),
+]
+
+# (nombre del DataFrame en logica/, tabla Oracle, columnas).
+# None = las columnas del DataFrame (hojas OEFA, sin mapa fijo).
+TABLAS: list[tuple[str, str, list[str] | None]] = [
     ("RESULTADO", TABLE, ORACLE_COLUMNS),
     ("DIRECTORIO", "RP_SINADA_DIRECTORIO_SEFA", COLS_DIRECTORIO),
     ("REGISTROS", "RP_SINADA_REGISTROS", COLS_REGISTROS),
     ("UBIGEO", "RP_SINADA_UBIGEO", COLS_UBIGEO),
     ("FERIADOS", "RP_SINADA_FERIADOS", COLS_FERIADOS),
+    *[(nombre, tabla, None) for nombre, tabla in HOJAS_OEFA],
 ]

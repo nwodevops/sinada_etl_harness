@@ -71,7 +71,17 @@ grep -q "STG_GS5_DIRECTORIO: " "$LOGFILE" || fail "no hay conteo STG_GS5_DIRECTO
 grep -q "STG_GS6_REGISTROS: " "$LOGFILE" || fail "no hay conteo STG_GS6_REGISTROS"
 grep -q "STG_GS7_UBIGEO: " "$LOGFILE" || fail "no hay conteo STG_GS7_UBIGEO"
 grep -q "STG_GS8_FERIADOS: " "$LOGFILE" || fail "no hay conteo STG_GS8_FERIADOS"
-if grep -E 'STG_GS[123]_SINADA_DERIV: 0 filas|STG_GS4_SINADA_MATRIZ: 0 filas|STG_GS5_DIRECTORIO: 0 filas|STG_GS6_REGISTROS: 0 filas|STG_GS7_UBIGEO: 0 filas|STG_GS8_FERIADOS: 0 filas' "$LOGFILE"; then
+grep -q "STG_GS9_OEFA_REGISTROS: " "$LOGFILE" || fail "no hay conteo STG_GS9_OEFA_REGISTROS"
+grep -q "STG_GS10_OEFA_SEGUIMIENTO: " "$LOGFILE" || fail "no hay conteo STG_GS10_OEFA_SEGUIMIENTO"
+grep -q "STG_GS11_OEFA_ASIGNACIONES: " "$LOGFILE" || fail "no hay conteo STG_GS11_OEFA_ASIGNACIONES"
+grep -q "STG_GS12_OEFA_EVALUACION: " "$LOGFILE" || fail "no hay conteo STG_GS12_OEFA_EVALUACION"
+grep -q "STG_GS13_OEFA_VALIDACION: " "$LOGFILE" || fail "no hay conteo STG_GS13_OEFA_VALIDACION"
+grep -q "STG_GS14_OEFA_DOC_COMUNIC: " "$LOGFILE" || fail "no hay conteo STG_GS14_OEFA_DOC_COMUNIC"
+grep -q "STG_GS15_OEFA_DOC_DERIV: " "$LOGFILE" || fail "no hay conteo STG_GS15_OEFA_DOC_DERIV"
+grep -q "STG_GS16_OEFA_VAL_RPTA: " "$LOGFILE" || fail "no hay conteo STG_GS16_OEFA_VAL_RPTA"
+grep -q "STG_GS17_OEFA_DOC_REI: " "$LOGFILE" || fail "no hay conteo STG_GS17_OEFA_DOC_REI"
+grep -q "STG_GS18_OEFA_DOC_OCI: " "$LOGFILE" || fail "no hay conteo STG_GS18_OEFA_DOC_OCI"
+if grep -E 'STG_GS[123]_SINADA_DERIV: 0 filas|STG_GS4_SINADA_MATRIZ: 0 filas|STG_GS5_DIRECTORIO: 0 filas|STG_GS6_REGISTROS: 0 filas|STG_GS7_UBIGEO: 0 filas|STG_GS8_FERIADOS: 0 filas|STG_GS9_OEFA_REGISTROS: 0 filas|STG_GS1[0-8]_OEFA_[A-Z_]+: 0 filas' "$LOGFILE"; then
   fail "una STG de Sheets quedó en 0 filas"
 fi
 grep -q "Salida RESULTADO" "$LOGFILE" || fail "no hay Salida RESULTADO en el log"
@@ -81,6 +91,16 @@ grep -q "Oracle RP_SINADA_DIRECTORIO_SEFA: " "$LOGFILE" || fail "no hay COUNT(*)
 grep -q "Oracle RP_SINADA_REGISTROS: " "$LOGFILE" || fail "no hay COUNT(*) de registros"
 grep -q "Oracle RP_SINADA_UBIGEO: " "$LOGFILE" || fail "no hay COUNT(*) de ubigeo"
 grep -q "Oracle RP_SINADA_FERIADOS: " "$LOGFILE" || fail "no hay COUNT(*) de feriados"
+grep -q "Oracle RP_SINADA_OEFA_REGISTROS: " "$LOGFILE" || fail "no hay COUNT(*) de oefa registros"
+grep -q "Oracle RP_SINADA_OEFA_SEGUIMIENTO: " "$LOGFILE" || fail "no hay COUNT(*) de oefa seguimiento"
+grep -q "Oracle RP_SINADA_OEFA_ASIGNACIONES: " "$LOGFILE" || fail "no hay COUNT(*) de oefa asignaciones"
+grep -q "Oracle RP_SINADA_OEFA_EVALUACION: " "$LOGFILE" || fail "no hay COUNT(*) de oefa evaluacion"
+grep -q "Oracle RP_SINADA_OEFA_VALIDACION: " "$LOGFILE" || fail "no hay COUNT(*) de oefa validacion"
+grep -q "Oracle RP_SINADA_OEFA_DOC_COMUNIC: " "$LOGFILE" || fail "no hay COUNT(*) de oefa doc comunic"
+grep -q "Oracle RP_SINADA_OEFA_DOC_DERIV: " "$LOGFILE" || fail "no hay COUNT(*) de oefa doc deriv"
+grep -q "Oracle RP_SINADA_OEFA_VAL_RPTA: " "$LOGFILE" || fail "no hay COUNT(*) de oefa val rpta"
+grep -q "Oracle RP_SINADA_OEFA_DOC_REI: " "$LOGFILE" || fail "no hay COUNT(*) de oefa doc rei"
+grep -q "Oracle RP_SINADA_OEFA_DOC_OCI: " "$LOGFILE" || fail "no hay COUNT(*) de oefa doc oci"
 if grep -q '\${[A-Za-z0-9_]\+}' "$LOGFILE"; then
   fail "log contiene variables Hop sin resolver"
 fi
